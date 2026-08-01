@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/packagex-openapi-original.yml
+standards:
+- id: apikey-auth
+  conforms: true
+  evidence: openapi securityScheme type apiKey in header (PX-API-KEY)
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 security scheme declared
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom response envelope, not application/problem+json
+- id: pagination
+  conforms: true
+  evidence: documented page/limit/has_more/total_count pagination object
+- id: idempotency
+  conforms: false
+  evidence: no idempotency-key mechanism documented
+- id: webhooks
+  conforms: true
+  evidence: topic.context event webhooks with custom-header auth and 2XX/5000ms delivery contract
+- id: https-required
+  conforms: true
+  evidence: docs require all requests over HTTPS

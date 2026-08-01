@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.packagex.io/apis/getting-started/sandbox
+environment:
+  name: sandbox
+  api_base_url: https://sandbox--api.packagex.io
+  dashboard_url: https://sandbox.packagex.io
+  description: >-
+    Isolated testing environment with functionality identical to production but a
+    separate database and domain. The only difference is that fake payment
+    information may be used — invoices and webhooks are still generated, but no
+    charges are made. Sandbox and Production API keys are issued separately in
+    the Dashboard.
+test_cards:
+- brand: visa
+  number: '4242424242424242'
+  cvc: any 3 digits
+  expiry: any future date
+- brand: mastercard
+  number: '5555555555554444'
+  cvc: any 3 digits
+  expiry: any future date
+- brand: amex
+  number: '378282246310005'
+  cvc: any 4 digits
+  expiry: any future date
+- brand: discover
+  number: '6011111111111117'
+  cvc: any 3 digits
+  expiry: any future date
+test_bank_account:
+  routing: '110000000'
+  account: '000999999991'
+test_tax:
+  ein: '000000000'
+  ssn_last4: '0000'
+test_payouts:
+  dob: '1902-01-01'
+note: All values above are published verbatim in the PackageX sandbox docs.

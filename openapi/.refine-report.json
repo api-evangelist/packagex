@@ -1,0 +1,14 @@
+{
+  "provider": "packagex",
+  "sources": [
+    "packagex-shipments-api-openapi.yml"
+  ],
+  "outputs": [
+    "packagex-shipments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

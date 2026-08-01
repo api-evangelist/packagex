@@ -1,0 +1,60 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.packagex.io/apis/getting-started/requests-and-responses
+authentication:
+  style: api-key-header
+  header: PX-API-KEY
+  alt_header: X-API-KEY
+  see: authentication/packagex-authentication.yml
+response_envelope:
+  description: >-
+    Every response — success or error — shares one envelope shape.
+  fields:
+  - status        # integer HTTP status (2XX success, 4XX/5XX error)
+  - message       # human-readable message
+  - data          # the object or array of objects (empty on errors)
+  - error_code    # developer-friendly error identifier (nullable)
+  - errors        # array of validation/error strings (usually the failing properties)
+  - events        # array of events triggered by this request
+  - pagination    # pagination object on plural/list responses (null otherwise)
+  - endpoint      # the endpoint path that was hit
+http_verbs:
+  description: >-
+    Only GET, POST and DELETE are used. A POST to a plural endpoint creates a
+    resource; a POST to a singular endpoint updates the existing object.
+  methods: [GET, POST, DELETE]
+pagination:
+  style: page-number
+  request_params:
+  - name: page
+    description: Page offset (1-based).
+  - name: limit
+    description: Maximum items per page.
+  response_object: pagination
+  response_fields:
+  - limit
+  - page
+  - has_more
+  - total_count
+  example: "?page=2&limit=50"
+metadata:
+  supported: true
+  docs: https://docs.packagex.io/apis/getting-started/metadata
+  description: Arbitrary key/value metadata can be attached to objects.
+filtering:
+  date_filters: https://docs.packagex.io/apis/getting-started/date-filters
+  search: https://docs.packagex.io/apis/getting-started/search
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header is documented. POST-to-singular is the documented
+    update path rather than an idempotent create.
+request_tracing:
+  documented: false
+rate_limiting:
+  documented: false
+error_envelope:
+  see: errors/packagex-problem-types.yml
+  format: custom
+lifecycle:
+  see: lifecycle/packagex-lifecycle.yml

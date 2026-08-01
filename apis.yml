@@ -1,8 +1,28 @@
 aid: packagex
 name: PackageX
-description: PackageX is a company surfaced as a portfolio company of bullpen-capital, sierra-ventures
-  and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the
-  enrichment pipeline.
+description: >-
+  PackageX provides vision-AI powered logistics execution — software that turns
+  any camera or device into an intelligent scanning agent to automate receiving,
+  inventory management, fulfillment and dispatch across warehouses, retail and
+  building logistics. Its REST API and mobile Vision SDKs expose shipments,
+  deliveries, tracking, addresses, containers, manifests, documents and vision
+  inferences (shipping-label OCR, bill-of-lading parsing, item segmentation).
+  Authentication is API-key based via the PX-API-KEY header, with separate
+  sandbox and production environments. Customers include WeWork, Subaru, Ricoh,
+  Medtronic, Toyota and On Running.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/68d230940fd846bdd01f1867/6989c29e1ae181a811f47ac1_OG.webp
 url: https://raw.githubusercontent.com/api-evangelist/packagex/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,15 +33,95 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Logistics
+- Shipping
+- Supply Chain
+- Computer Vision
+- OCR
+- Package Tracking
+- Fulfillment
+apis:
+- aid: packagex:packagex-shipments-api
+  name: PackageX shipments API
+  description: The shipments API from PackageX — 2 operation(s) for shipments.
+  humanURL: https://docs.packagex.io/apis/getting-started/welcome
+  baseURL: https://api.packagex.io
+  tags:
+  - shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/packagex-shipments-api-openapi.yml
+  - type: APIReference
+    url: https://docs.packagex.io/apis/getting-started/welcome
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.packagex.io/apis/getting-started/welcome
+- type: Documentation
+  url: https://docs.packagex.io/apis/getting-started/welcome
+- type: GettingStarted
+  url: https://docs.packagex.io/apis/getting-started/welcome
+- type: APIReference
+  url: https://docs.packagex.io/apis/getting-started/welcome
+- type: Support
+  url: https://help.packagex.io/en/knowledge
+- type: Blog
+  url: https://packagex.io/blog
+- type: GitHubOrganization
+  url: https://github.com/packagex-io
+- type: TermsOfService
+  url: https://packagex.io/terms
+- type: PrivacyPolicy
+  url: https://packagex.io/privacy-policy
+- type: StatusPage
+  url: https://packagex.statuspage.io
+- type: Authentication
+  url: authentication/packagex-authentication.yml
+- type: Packages
+  url: packages/packagex-packages.yml
+- type: SDKs
+  url: packages/packagex-packages.yml
+- type: MCPServer
+  url: mcp/packagex-mcp.yml
+- type: LLMsTxt
+  url: llms/packagex-llms.txt
+- type: Overlay
+  url: overlays/packagex-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/packagex-conformance.yml
+- type: ErrorCatalog
+  url: errors/packagex-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/packagex-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/packagex-lifecycle.yml
+- type: ChangeLog
+  url: changelog/packagex-changelog.yml
+- type: Sandbox
+  url: sandbox/packagex-sandbox.yml
+- type: Conventions
+  url: conventions/packagex-conventions.yml
+- type: DataModel
+  url: data-model/packagex-data-model.yml
+- type: Webhooks
+  url: asyncapi/packagex-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/packagex-agentic-access.yml
+- type: DomainSecurity
+  url: security/packagex-domain-security.yml
 - type: Website
   url: https://packagex.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1

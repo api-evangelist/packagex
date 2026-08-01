@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/packagex-io + https://docs.packagex.io/sdks
+packages:
+- language: javascript
+  registry: npm
+  name: ship-node
+  url: https://www.npmjs.com/package/ship-node
+  install: npm install ship-node
+  repo: https://github.com/packagex-io/ship-node
+  description: Node wrapper for the PackageX Cloud Shipment APIs.
+  version: 0.0.8
+  official: true
+- language: typescript
+  registry: npm
+  name: react-native-vision-sdk
+  url: https://www.npmjs.com/package/react-native-vision-sdk
+  install: npm install react-native-vision-sdk
+  repo: https://github.com/packagex-io/react-native-vision-sdk
+  description: PackageX Vision SDK for React Native (iOS & Android) — barcode/AI/OCR scanning, dimensioning.
+  version: 3.10.0
+  official: true
+- language: swift
+  registry: github
+  name: vision-sdk (iOS)
+  url: https://github.com/packagexlabs/vision-sdk
+  repo: https://github.com/packagexlabs/vision-sdk
+  description: Native iOS Vision SDK — single/multiple barcode, AI scanning, OCR, dimensioning, price-tag scanning.
+  official: true
+- language: kotlin
+  registry: jitpack
+  name: vision-sdk (Android)
+  url: https://jitpack.io/#packagexlabs/vision-sdk
+  install: implementation 'com.github.packagexlabs:vision-sdk:<version>'
+  repo: https://github.com/packagexlabs/vision-sdk
+  description: Native Android Vision SDK — barcode/AI/OCR scanning, price tags, model management.
+  official: true
+- language: dart
+  registry: github
+  name: vision-sdk (Flutter)
+  url: https://github.com/packagexlabs/vision-sdk
+  description: Flutter Vision SDK — single/multiple barcode, AI scanning, OCR, model management.
+  official: true
+notes: >-
+  Server-side SDK coverage is limited to the Node "ship-node" wrapper for the
+  Cloud Shipment APIs. The bulk of PackageX's published libraries are mobile
+  Vision SDKs (Swift/Kotlin/React Native/Flutter) that turn a device camera into
+  a scanning agent. GitHub orgs: packagex-io (public SDKs) and packagexlabs
+  (Vision SDK core).

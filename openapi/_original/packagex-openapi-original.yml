@@ -1,0 +1,707 @@
+openapi: '3.0.0'
+info:
+  title: API Title
+  version: '0.1'
+servers:
+  - url: https://sandbox--api.packagex.io
+    description: The public testing server
+  - url: https://api.packagex.io
+    description: The production server
+security:
+  - api_key: []
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: PX-API-KEY
+  schemas:
+    address:
+      type: object
+      description: The PackageX address object
+      properties:
+        id: 
+          description: The ID for this address. Can be passed into any address field in the future to retrieve this exact address.
+          type: string
+        hash: 
+          description: Similar to the address ID, the hash is a unique string that identifies the address but without the line2 property.
+          type: string
+        line1: 
+          description: The first line of the street address.
+          type: string
+        line2: 
+          description: The second line of the street address.
+          type: string
+        city: 
+          description: The name of the city.
+          type: string
+        state: 
+          description: The full name of the state.
+          type: string
+        state_code: 
+          description: The abbreviated code for the state if applicable.
+          type: string
+        country: 
+          description: The full name of the country for this address.
+          type: string
+        country_code: 
+          description: The two character country code for this address.
+          type: string
+        postal_code: 
+          description: The postal code for this address.
+          type: string
+        formatted_address: 
+          description: The full text string of the address.
+          type: string
+        textarea: 
+          description: The full text string of the address without the line2 address. This is useful if using address auto complete that does not provide a line2 address which would be asked for in a separate input field. 
+          type: string
+        timezone: 
+          description: The timezone for this address 
+          example: America/Los_Angeles
+          type: string
+        verified: 
+          description: If we have verified this address 
+          type: boolean
+        latitude: 
+          description: The latitude coordinate
+          type: number
+        longitude: 
+          description: The longitude coordinate
+          type: number
+    provider: 
+      type: object
+      description: Details about a shipping provider for a given rate or shipment
+      properties:
+        name: 
+          description: The name of the provider
+          type: string
+        id:
+          description: Unique ID of the provider
+          type: string
+        logo_url:
+          description: The url for the provider's logo
+          type: string
+        support_email:
+          description: The contact email provided by the shipping provider
+          nullable: true
+          type: string
+        support_phone:
+          description: The contact phone provided by the shipping provider
+          nullable: true
+          type: string
+        support_url:
+          description: The contact website provided by the shipping provider
+          nullable: true
+          type: string
+        marketplace:
+          description: If this shipping provider came from the PackageX marketplace. Typically large providers like FedEx, UPS, USPS, etc are not from the marketplace and same-day courier are not.
+          type: boolean  
+    tracking_update:
+      type: object
+      description: The record of each tracking update from a shipment
+      properties:
+        address: 
+          $ref: "#/components/schemas/address"
+        status: 
+          description: The status for this shipment. For all statuses see https://docs.packagex.io/shipments/statuses
+          type: string
+        comment: 
+          description: A shipping provider comment
+          nullable: true
+          type: string
+        images: 
+          description: Urls of images
+          type: array
+          items:
+            type: string
+        message: 
+          description: Human readable text explaining the status
+          example: Your package is in transit
+          type: string
+        event: 
+          description: The event that occurred when this event was created. For all events see https://docs.packagex.io/shipments/events
+          example: Your package is in transit
+          type: string
+        created_at: 
+          description: Time from unix eopch seconds when this tracking update was created
+          type: integer
+    rate:
+      type: object
+      description: The shipping rate object showing the service level, price, and shipping provider information
+      properties:
+        id: 
+          description: The ID for this rate. To purchase a shipping label after getting rates, you will pass in this rate to indicate you wish to purchase it
+          type: string
+        amount: 
+          description: The amount that will be collected from a customer. This includes any upcharges or discounts you have added to the price on the PackageX Dashboard.
+          type: integer
+        billed_amount: 
+          description: The amount that your organization will be billed for this rate.
+          type: integer
+        carrier_account: 
+          nullable: true
+          description: The custom rate card that was used for this transaction. Should be null for all organizations currently.
+          type: string
+        pickup_at: 
+          nullable: true
+          description: Time in epoch seconds when this shipment will be picked up, if that is included in the service of this rate. Will be null otherwise.
+          type: integer
+        provider: 
+          $ref: "#/components/schemas/provider"
+        service_level: 
+          type: object
+          description: The service level for this rate
+          properties:
+            name: 
+              description: The human readable name for this service label
+              type: string
+            id: 
+              description: The unique ID of this provider's service level
+              type: string
+            terms: 
+              description: The human readable delivery estimate for this rate
+              example: 1 day delivery or Today by 9pm
+              type: string
+            days: 
+              description: The number of days that this delivery is estimated to take if the provider receives the shipment before their daily cutoff time.
+              type: integer
+            estimated_delivery: 
+              description: The time in epoch seconds when we estimate the shipment at this rate will be delivered
+              type: integer
+    parcel:
+      type: object
+      description: A parcel or package that will be included in a shipment
+      properties:
+            length: 
+              description: The length of the package in inches
+              type: number
+            width: 
+              description: The width of the package in inches
+              type: number
+            height: 
+              description: The height of the package in inches
+              type: number
+            weight: 
+              description: The weight of the package in pounds
+              type: number
+            type: 
+              description: The courier specific packaging. See https://docs.packagex.io/shipments/predefined-packages for more information
+              type: string
+            item_description: 
+              description: The user provided description for the package. This is shown the the recipient if using PackageX notifications
+              type: string
+              nullable: true
+            special_handling: 
+              description: Any special handing instructions provided. Not all shipping providers support these
+              type: string
+              # enum: [confidential, fragile, urgent, perishable, legal_document, oversized, dry_ice, batteries, time_sensitive, signature]
+              nullable: true
+    shipment:
+      type: object
+      description: A shipment object
+      properties:
+        amount: 
+          description: The amount that will be collected from a customer. This includes any upcharges or discounts you have added to the price on the PackageX Dashboard.
+          type: integer
+          nullable: true
+        billed_amount: 
+          description: The amount that your organization will be billed for this rate.
+          type: integer     
+          nullable: true
+        provider: 
+          $ref: "#/components/schemas/provider"
+          nullable: true
+        created_at:
+          description: Time in epoch seconds when this shipment was created.
+          type: integer
+        updated_at:
+          description: Time in epoch seconds when this shipment was last updated.
+          type: integer
+        currency:
+          description: The currency used for this shipment.
+          type: string
+          enum: [usd]
+        estimated_delivery:
+          description: Time in epoch seconds when we estimate the delivery will occur.
+          type: integer
+          nullable: true
+        has_issue:
+          description: If this shipment has any existing issue, normally do to the most recent tracking update indicating that there is an issue.
+          type: boolean
+        id: 
+          description: The unique ID for the shipment
+          type: string
+        status:
+          description: The current status for the shipment. It's the same status as the latest tracking_update just surfaced for convenience. See https://docs.packagex.io/shipments/statuses for more info on statuses.
+          type: string
+        lead_time_hours: 
+          description: The amount of lead time in hours that is required. This is only applicable for same-day shipments and indicated how much advance notice is required between the shipping provider and sender before a courier will be dispatched.
+          type: integer
+        metadata: 
+          description: Custom key value pairs that the organization is able to add to this shipment
+          type: object
+        paid:
+          description: If the shipment has been paid for
+          type: boolean
+        parcels:
+          description: The individual packages that are part of this shipment.
+          type: array
+          items:
+            $ref: "#/components/schemas/parcel"
+        payment_reference: 
+          description: A user generated reference for this payment. Will be included in invoices.
+          type: string
+          nullable: true
+        purchased_rate: 
+          description: The rate that was purcahsed for this shipment
+          $ref: "#/components/schemas/rate"
+          nullable: true
+        rates:
+          description: All of the rates that were returned when creating this shipment
+          type: array
+          items:
+            $ref: "#/components/schemas/rate"
+        recipient:
+          type: object
+          description: The information about the shipment recipient
+          properties:
+            address: 
+              $ref: "#/components/schemas/address"
+            name: 
+              description: The recipient's name
+              type: string
+            email: 
+              description: The recipient's email
+              type: string
+            phone: 
+              description: The recipient's phone
+              type: string
+        sender:
+          type: object
+          description: The information about the shipment sender, which is normally the organization using this API
+          properties:
+            address: 
+              $ref: "#/components/schemas/address"
+            name: 
+              description: The sender's name
+              type: string
+            email: 
+              description: The sender's email
+              type: string
+            phone: 
+              description: The sender's phone
+              type: string
+            logo_url: 
+              description: The sender's logo
+              type: string
+            id: 
+              description: The sender's unique packagex ID
+              type: string
+        pickup_at: 
+          description: Seconds from epoch when this shipment will be picked up, if pickup is part of the rate's service level
+          type: integer
+          nullable: true
+        organization_id: 
+          description: The ID of the organization that owns this shipment
+          type: string
+        label_url: 
+          description: The url for the shipping label
+          type: string
+          nullable: true
+        invoice_id: 
+          description: The ID of the invoice for this shipment
+          type: string
+        tracking_number: 
+          description: The tracking number for this shipment. 
+          type: string
+        tracking_url: 
+          description: The url for the end user to track their shipment
+          type: string
+        feedback: 
+          description: User provided feedback for this shipment
+          type: object
+          properties:
+            rating:
+              description: A 0 indicates a poor review and a 1 indicates a good review. 
+              type: integer
+              minimum: 0
+              maximum: 1
+              nullable: true
+            comment: 
+              description: A comment that the user provided about their experience
+              type: string
+              nullable: true
+            updated_at:
+              description: When the feedback was updated in epoch seconds
+              type: integer
+              nullable: true
+        tracking_updates:
+          description: A list of all tracking updates that occurred for this shipment from oldest to newest
+          type: array
+          items:
+            $ref: "#/components/schemas/tracking_update"
+        latest_location:
+          type: object
+          description: The latest read-time tracking information for this shipment
+          properties:
+            latitude: 
+              description: The latitude coordinate available if the provider is giving real time updates
+              type: number
+              nullable: true
+            longitude: 
+              description: The longitude coordinate available if the provider is giving real time updates
+              type: number
+              nullable: true
+            updated_at: 
+              description: The last time this live location was updated in epoch seconds
+              type: integer
+            map_url: 
+              description: The url to a map showing the tracking history and current live location
+              type: string
+              nullable: true
+    pagination: 
+      type: object
+      description: The pagination object returned in responses where multiple values are returned
+      properties:
+        limit:
+          type: integer
+          description: The limit for the responses
+        page:
+          type: integer
+          description: The current page offset that is being retrieved
+          example: If the limit is 10 and the page is 3, results are being returned for items 30 to 40
+        has_more:
+          type: boolean
+          description: indicates if there are more values in the database not retrieved in this query
+    error:
+      description: An error response
+      type: object
+      properties:
+        status: 
+          description: A 4XX or 5XX status code indicating the error that occurred 
+          type: integer
+        message: 
+          description: A human readable message to display to an end user
+          type: string
+        error_code:
+          type: string
+          nullable: true
+          description: The developer code for the issue that occurred.
+        data: 
+          type: object
+          description: The data object will be empty on errors
+        errors:
+          description: An list of errors that occurred. Normally will be of the properties that failed validation. 
+          type: array
+          items: 
+            type: string
+        pagination: 
+          description: The pagination will be empty for error responses
+          nullable: true
+          $ref: "#/components/schemas/pagination"
+        events: 
+          description: All of the events that were triggered due to this request
+          type: array
+          items:
+            type: string 
+        endpoint: 
+          description: The endpoint that was hit
+          type: string 
+    response:
+      description: An error response
+      type: object
+      properties:
+        status: 
+          description: A 2XX code
+          type: integer
+          example: 200
+        message: 
+          description: A human readable message to display to an end user
+          type: string
+        error_code:
+          type: string
+          nullable: true
+          description: The developer code for the issue that occurred.
+        data: 
+          type: object
+          description: The data object will be empty on errors
+        errors:
+          description: An list of errors that occurred. Normally will be of the properties that failed validation. 
+          type: array
+          items: 
+            type: string
+          example: []
+        pagination: 
+          description: The pagination will be empty for error responses
+          nullable: true
+          $ref: "#/components/schemas/pagination"
+        events: 
+          description: All of the events that were triggered due to this request
+          type: array
+          items:
+            type: string 
+        endpoint: 
+          description: The endpoint that was hit
+          type: string 
+paths:
+  /v1/shipments:
+    get:
+      operationId: shipments.list
+      description: Lists shipments up to the specified limit starting at the specified page
+      tags:
+        - shipments
+      parameters:
+        - in: query
+          name: page
+          schema: 
+            type: integer
+            default: 1
+          description: The page offset that you wish to use
+        - in: query
+          name: limit
+          schema: 
+            type: integer
+            default: 25
+          description: The amount of results you want to list
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - "$ref": "#/components/schemas/response"
+                  - type: object
+                    properties:
+                      data: 
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/shipment"
+        default:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"
+          description: Error response.    
+    post:
+      operationId: shipments.create
+      description: Gets shipping rates for a new shipment.
+      tags:
+        - shipments
+      requestBody:
+        description: Creates a new shipment
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sender: 
+                  type: object
+                  properties:
+                    name: 
+                      type: string
+                      description: The sender's name
+                    email: 
+                      type: string
+                      description: The sender's email
+                    phone: 
+                      type: string
+                      description: The sender's phone
+                    address: 
+                      description: The sender's address as a single line. PackageX will parse the address. You can also send an existing address ID. You can also send the address in object format with the line1, line2, city, state, and postal_code values.
+                      oneOf:
+                        - type: string
+                        - type: object
+                    address_line2:
+                      nullable: true
+                      type: string
+                      description: The line2 of the address if the address provided in the address property was a string from autocomplete.
+                recipient: 
+                  type: object
+                  properties:
+                    name: 
+                      type: string
+                      description: The sender's name
+                    email: 
+                      type: string
+                      description: The sender's email
+                    phone: 
+                      type: string
+                      description: The sender's phone
+                    address: 
+                      description: The sender's address as a single line. PackageX will parse the address. You can also send an existing address ID. You can also send the address in object format with the line1, line2, city, state, and postal_code values.
+                      oneOf:
+                        - type: string
+                        - type: object
+                    address_line2:
+                      nullable: true
+                      type: string
+                      description: The line2 of the address if the address provided in the address property was a string from autocomplete.
+                parcel: 
+                  $ref: "#/components/schemas/parcel"
+                verify_address: 
+                  type: boolean
+                  description: If true will verify the addresses for the sender and recipient.
+                  example: false
+                  default: false
+                provider_timeout: 
+                  type: integer
+                  description: Time in milliseconds to wait for a provider's rate response. Not this is not how long the response will take, rather how long we will wait for responses from every shipping provider. Generally speaking, large carriers typically take about 2500ms to respond.
+                  minimum: 500
+                  maximum: 20000
+                  default: 7500
+                metadata: 
+                  type: object
+                  description: You can add custom key value pairs to this object. To unset a property you can pass null as the value. To unset the whole object, pass null to the object.
+                  example: {}
+                  default: {}
+
+            example:
+              sender:
+                name: Jamie Jones
+                email: jamie@packagex.io
+                phone: "4844836699"
+                address: "500 7th Ave, New York, NY 10018"
+                address_line2: Floor 10
+              recipient:
+                name: Odin Oliver
+                email: odin.oliver@packagex.io
+                phone: "4844836699"
+                address: 
+                  line1: 600 B. Street
+                  line2: Suite 300
+                  city: San Diego
+                  state: CA
+                  postal_code: "90101"
+              parcel:
+                length: 2
+                width: 3.5
+                height: 4
+                weight: 1.25
+                item_description: null
+                special_handling: null
+              options: 
+                verify_address: false
+                provider_timeout: 7500
+
+                
+
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - "$ref": "#/components/schemas/response"
+                  - type: object
+                    properties:
+                      data: 
+                        type: object
+                        $ref: "#/components/schemas/shipment"
+        default:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"
+          description: Error response.  
+
+  /v1/shipments/{shipment}:
+    get:
+      operationId: shipments.retrieve
+      description: Retrieves a specific shipment
+      tags:
+        - shipments
+      parameters:
+          - in: path
+            name: shipment
+            required: true
+            description: The ID of the shipment you want to retrieve
+            schema: 
+              type: string
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - "$ref": "#/components/schemas/response"
+                  - type: object
+                    properties:
+                      data: 
+                        type: object
+                        $ref: "#/components/schemas/shipment"
+        default:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"
+          description: Error response.    
+    post:
+      operationId: shipments.purchase
+      description: Purchases a shipping label
+      tags:
+        - shipments
+      parameters:
+          - in: path
+            name: shipment
+            required: true
+            description: The ID of the shipment you want to retrieve
+            schema: 
+              type: string
+      requestBody:
+        description: Purchases a shipment
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rate_id:
+                  type: string
+                  description: The ID of the rate that you wish to purchase
+                payment_method:
+                  type: string
+                  nullable: true
+                  description: The ID of the payment method that you want to use from the payment methods you have on file with PackageX. If not provided, we'll use the default payment method on file
+                payment_reference:
+                  type: string
+                  nullable: true
+                  description: A reference to the payment that can be added to this shipment. This is a field generated by the user
+                  example: Customer Support Department
+                label_size:
+                  type: string
+                  nullable: true
+                  description: Specify a label size for the returned shipping label. If not included, we'll use the default shipping label size set from the PackageX Dashboard.
+                  enum: [4x6, letter, 4x8, a4, a6]
+                  example: 4x6
+
+            example:
+              rate_id: "rate_bdc2f190408545ec8a118886fd5e1dee"
+              payment_reference: "Sandbox Department"
+              label_size: "4x6"        
+
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - "$ref": "#/components/schemas/response"
+                  - type: object
+                    properties:
+                      data: 
+                        type: object
+                        $ref: "#/components/schemas/shipment"
+        default:
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"
+          description: Error response.  
+
+    

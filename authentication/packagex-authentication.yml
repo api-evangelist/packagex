@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/packagex-openapi-original.yml
+docs: https://docs.packagex.io/apis/getting-started/authenication
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+notes: >-
+  PackageX uses API-key authentication passed in a request header. Keys are
+  generated in the PackageX Dashboard, separately for the Sandbox and Production
+  environments; an "owner" or "developer" account role is required to create
+  them. Keys are shown only once and cannot be recovered if lost. All requests
+  must be made over HTTPS; plain HTTP and unauthenticated requests fail. API
+  keys can be scoped to restrict access to only the APIs they need.
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: PX-API-KEY
+  alt_parameter: X-API-KEY
+  sources:
+  - openapi/packagex-openapi-original.yml
+environments:
+- name: production
+  base_url: https://api.packagex.io
+- name: sandbox
+  base_url: https://sandbox--api.packagex.io

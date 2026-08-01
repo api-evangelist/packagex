@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/packagex-openapi-original.yml
+format: custom
+docs: https://docs.packagex.io/apis/getting-started/requests-and-responses
+envelope:
+  description: >-
+    Errors use the same response envelope as success responses. Failures set a
+    4XX/5XX `status`, a human-readable `message`, a developer `error_code`
+    (nullable), and an `errors[]` array listing the properties that failed
+    validation. `data` and `pagination` are empty on errors.
+  format: not-rfc9457
+  fields:
+  - status
+  - message
+  - error_code
+  - errors
+  - data
+  - pagination
+  - endpoint
+problems:
+- status: 400
+  title: Bad request / validation failure
+  description: One or more properties failed validation; details are in errors[].
+- status: 401
+  title: Unauthorized
+  description: Missing or invalid PX-API-KEY, or the request was not made over HTTPS.
+- status: 403
+  title: Forbidden
+  description: The API key is not scoped to this API / resource.
+- status: 404
+  title: Not found
+  description: The requested object does not exist.
+  source_operation: openapi/packagex-openapi-original.yml#shipments.retrieve
+- status: 429
+  title: Too many requests
+  description: Rate limit exceeded (not formally documented).
+- status: 500
+  title: Internal server error
+  description: An unexpected error occurred on the PackageX side.
+note: >-
+  The published OpenAPI declares only 200 and a `default` (error) response per
+  operation, referencing the shared `error` schema. The status list above is
+  derived from the envelope's documented 4XX/5XX semantics; PackageX does not
+  publish a discrete numeric error-code registry.

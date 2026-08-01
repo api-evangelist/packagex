@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/packagex-openapi-original.yml
+entities:
+- name: shipment
+  description: A shipment object (rates, amounts, provider, tracking, delivery estimate).
+  id_field: id
+- name: address
+  description: PackageX address object (id + hash, line1/line2, city, state, ...).
+  id_field: id
+- name: provider
+  description: The carrier/provider used for a shipment or rate.
+- name: rate
+  description: A shipping rate option for a shipment.
+- name: parcel
+  description: A physical parcel within a shipment.
+- name: tracking_update
+  description: A tracking event/update on a shipment.
+- name: pagination
+  description: Pagination envelope for list responses.
+- name: error
+  description: Shared error/response envelope.
+relationships:
+- from: shipment
+  to: provider
+  kind: has_one
+  via: provider
+- from: shipment
+  to: rate
+  kind: has_many
+  via: rates
+- from: shipment
+  to: parcel
+  kind: has_many
+  via: parcels
+- from: shipment
+  to: tracking_update
+  kind: has_many
+  via: tracking_updates
+- from: shipment
+  to: address
+  kind: has_many
+  via: from_address / to_address
+note: >-
+  Derived from the published (partial) OpenAPI, which models the Shipments
+  surface. The full PackageX platform (deliveries, trackers, containers,
+  manifests, organizations, locations, users, contacts, documents, inferences)
+  is documented but not present in the public spec.

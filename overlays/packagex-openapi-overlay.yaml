@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for PackageX
+  version: 1.0.0
+extends: openapi/packagex-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    title: PackageX Shipments API
+    description: >-
+      Vision-AI powered logistics execution — the published Shipments surface of
+      the PackageX platform (production https://api.packagex.io, sandbox
+      https://sandbox--api.packagex.io). Authentication is API-key via the
+      PX-API-KEY header.
+    x-apievangelist-rating: 3
+    x-apievangelist-auth: apiKey (PX-API-KEY header)
+- target: $.info
+  update:
+    contact:
+      name: PackageX Developer Docs
+      url: https://docs.packagex.io/apis/getting-started/welcome
+- target: $.tags
+  update:
+  - name: Shipments
+    description: Create, list, retrieve and purchase shipments.

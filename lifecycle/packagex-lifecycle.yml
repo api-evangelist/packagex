@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.packagex.io/apis/getting-started/release-notes
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.packagex.io/v1
+deprecation:
+  policy_url: https://docs.packagex.io/apis/getting-started/release-notes
+  documented: true
+  note: >-
+    Breaking changes are announced in the dated Release Notes (e.g. print jobs
+    now require an explicit configuration.paper_size; workflow-secret removal now
+    requires an explicit DELETE). No formal Sunset/Deprecation-header (RFC 8594)
+    policy is published.
+status_page: https://packagex.statuspage.io
+changelog: https://docs.packagex.io/apis/getting-started/release-notes
+deprecated_operations: []

@@ -1,0 +1,30 @@
+# PackageX
+
+> Vision-AI powered logistics execution. PackageX turns any camera or device into an intelligent scanning agent that automates receiving, inventory, fulfillment and dispatch, and exposes a REST API for shipments, deliveries, tracking, documents and vision inferences (shipping-label OCR, bill-of-lading, item segmentation). Authentication is API-key via the PX-API-KEY header.
+
+## APIs
+- [PackageX Shipments API (production)](https://api.packagex.io): REST base URL for the platform.
+- [Sandbox API](https://sandbox--api.packagex.io): isolated test environment; identical behavior, fake payments.
+
+## Specs
+- [OpenAPI (shipments)](https://raw.githubusercontent.com/packagex-io/openapi/main/openapi/spec3.yml): first-party OpenAPI 3.0 for the Shipments surface.
+
+## Docs
+- [API docs — Getting Started](https://docs.packagex.io/apis/getting-started/welcome)
+- [Authentication](https://docs.packagex.io/apis/getting-started/authenication): PX-API-KEY / X-API-KEY header; sandbox vs production keys.
+- [Requests & Responses](https://docs.packagex.io/apis/getting-started/requests-and-responses): shared response envelope, page/limit pagination.
+- [Sandbox](https://docs.packagex.io/apis/getting-started/sandbox): test cards, bank, tax fixtures.
+- [Webhooks & Events](https://docs.packagex.io/apis/getting-started/webhooks-and-events): topic.context events, custom-header auth.
+- [Release Notes](https://docs.packagex.io/apis/getting-started/release-notes)
+- [SDKs](https://docs.packagex.io/sdks): Vision SDKs (Swift/Kotlin/React Native/Flutter) + ship-node.
+- [Help Center](https://help.packagex.io/en/knowledge)
+
+## Products
+- [Vision SDK](https://packagex.io/platform/vision-sdk)
+- [Logistics API Suite](https://packagex.io/logistics-api-suite)
+- [Shipping Label / OCR API](https://packagex.io/ocr-api)
+- [Bill of Lading (BOL) API](https://packagex.io/platform/bol-api)
+
+## GitHub
+- [packagex-io](https://github.com/packagex-io): public SDKs (react-native-vision-sdk, ship-node) and the OpenAPI spec.
+- [packagexlabs](https://github.com/packagexlabs): Vision SDK core.

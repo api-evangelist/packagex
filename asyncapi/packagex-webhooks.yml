@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.packagex.io/apis/getting-started/webhooks-and-events
+type: Webhooks
+spec_type: none
+description: >-
+  PackageX emits webhook events whenever an object is updated in the database.
+  Event names follow a `topic.context` format where the topic is the object type
+  and the context describes what happened. Webhooks are configured in the
+  Developer Center dashboard, may subscribe to specific events, and support
+  custom header authentication (a user-defined key/value pair; hashed or
+  encrypted values recommended). A receiver must return a 2XX within 5000ms or
+  the delivery is marked failed.
+delivery:
+  timeout_ms: 5000
+  success: 2XX status code
+  auth: custom header (key + value), configured per webhook
+event_format: topic.context
+events:
+- name: shipment.delivered
+  description: A shipment reached the delivered state (documented example).
+- name: fulfillment.created
+  description: A fulfillment object was created (documented example).
+- name: outgoing_integration__error
+  description: Fires when an outgoing integration's error count exceeds the configured threshold; emails subscribed users.
+- name: incoming_webhook__error
+  description: Fires when an incoming webhook's error count exceeds the configured threshold; emails subscribed users.
+note: >-
+  PackageX documents webhooks generatively (any object update emits
+  <topic>.<context>); the events above are the explicitly named examples plus the
+  two integration-error notifications. No AsyncAPI document is published and no
+  full event catalog / payload schema is public — do not fabricate one.

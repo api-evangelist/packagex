@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.packagex.io/apis/getting-started/release-notes
+scheme: dated-release-notes
+current_version: v1
+entries:
+- date: '2026-06-30'
+  highlights:
+  - Cloud Printing — expanded supported label paper sizes from 5 to 39 formats via configuration.paper_size.
+  breaking:
+  - Print jobs now require an explicit configuration.paper_size; previously a best-effort match was made.
+- date: '2026-06-08'
+  additions:
+  - Introduced the Documents API for file uploads, management and resource linking (public/private visibility, categories, full-text search).
+- date: '2026-05-14'
+  additions:
+  - Added the Item Segmentation inference model to the SDK.
+  - Exports processing performance improvements.
+- date: '2026-05-09'
+  additions:
+  - Trackers — new shipment_is_parent filter and has_parent_shipment boolean field.
+  - Parcels — added metadata field and filtering support.
+  - Containers — added comment field support.
+- date: '2025-02-08'
+  additions:
+  - Contacts API — alternate names, tagged addresses/emails/phones.
+  - Manifests — parcel statuses, quantities and email functionality.
+  - Templates — location-based labels with custom logo support.
+  - Imports/Exports APIs for CSV operations.

@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: packagex-create-shipment.md
+  name: Create and purchase a PackageX shipment
+  api: openapi/packagex-openapi-original.yml
+  operations: [shipments.create, shipments.retrieve, shipments.purchase, shipments.list]

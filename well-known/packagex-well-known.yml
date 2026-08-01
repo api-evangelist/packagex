@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: searched
+host: https://api.packagex.io
+description: >-
+  Probed the standard /.well-known/ discovery surface on the API and website
+  hosts. None returned 200; recorded for auditability (absence is valid data).
+documents:
+- path: /.well-known/security.txt
+  host: https://api.packagex.io
+  status: 404
+- path: /.well-known/security.txt
+  host: https://packagex.io
+  status: 404
+- path: /.well-known/openid-configuration
+  host: https://api.packagex.io
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: https://api.packagex.io
+  status: 404
+- path: /.well-known/api-catalog
+  host: https://api.packagex.io
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: https://api.packagex.io
+  status: 404
