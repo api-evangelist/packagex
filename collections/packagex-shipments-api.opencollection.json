@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Title shipments API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "PX-API-KEY",
+      "value": "{{PX-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "shipments.list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox--api.packagex.io/v1/shipments",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page offset that you wish to use"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The amount of results you want to list"
+              }
+            ]
+          },
+          "docs": "Lists shipments up to the specified limit starting at the specified page"
+        },
+        {
+          "info": {
+            "name": "shipments.create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox--api.packagex.io/v1/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Gets shipping rates for a new shipment."
+        },
+        {
+          "info": {
+            "name": "shipments.retrieve",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox--api.packagex.io/v1/shipments/:shipment",
+            "params": [
+              {
+                "name": "shipment",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment you want to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves a specific shipment"
+        },
+        {
+          "info": {
+            "name": "shipments.purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox--api.packagex.io/v1/shipments/:shipment",
+            "params": [
+              {
+                "name": "shipment",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the shipment you want to retrieve"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Purchases a shipping label"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

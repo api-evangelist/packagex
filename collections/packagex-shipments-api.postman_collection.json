@@ -1,0 +1,688 @@
+{
+  "item": [
+    {
+      "id": "d9d9dbd3-376b-46af-a683-3087559c819b",
+      "name": "shipments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ca6cbc1-f3fa-4465-8f8d-0ef8963ac67a",
+          "name": "shipments.list",
+          "request": {
+            "name": "shipments.list",
+            "description": {
+              "content": "Lists shipments up to the specified limit starting at the specified page",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page offset that you wish to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The amount of results you want to list"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbd469ac-a899-4516-8100-8450d95f0f4e",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08ee1e66-fce3-4a7c-ac72-387550620737",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 5724,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {},\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pagination\": {\n    \"limit\": 3628,\n    \"page\": 4183,\n    \"has_more\": false\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dc80178-2b0b-4c2e-bbb3-483ca346eac5",
+          "name": "shipments.create",
+          "request": {
+            "name": "shipments.create",
+            "description": {
+              "content": "Gets shipping rates for a new shipment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address_line2\": \"<string>\"\n  },\n  \"recipient\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"address\": \"<string>\",\n    \"address_line2\": \"<string>\"\n  },\n  \"parcel\": {\n    \"length\": \"<number>\",\n    \"width\": \"<number>\",\n    \"height\": \"<number>\",\n    \"weight\": \"<number>\",\n    \"type\": \"<string>\",\n    \"item_description\": \"<string>\",\n    \"special_handling\": \"<string>\"\n  },\n  \"verify_address\": false,\n  \"provider_timeout\": 7500,\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5faa080-7402-42f9-905c-618506a8cc0f",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": {\n    \"name\": \"Jamie Jones\",\n    \"email\": \"jamie@packagex.io\",\n    \"phone\": \"4844836699\",\n    \"address\": \"500 7th Ave, New York, NY 10018\",\n    \"address_line2\": \"Floor 10\"\n  },\n  \"recipient\": {\n    \"name\": \"Odin Oliver\",\n    \"email\": \"odin.oliver@packagex.io\",\n    \"phone\": \"4844836699\",\n    \"address\": {\n      \"line1\": \"600 B. Street\",\n      \"line2\": \"Suite 300\",\n      \"city\": \"San Diego\",\n      \"state\": \"CA\",\n      \"postal_code\": \"90101\"\n    }\n  },\n  \"parcel\": {\n    \"length\": 2,\n    \"width\": 3.5,\n    \"height\": 4,\n    \"weight\": 1.25,\n    \"item_description\": null,\n    \"special_handling\": null\n  },\n  \"options\": {\n    \"verify_address\": false,\n    \"provider_timeout\": 7500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {\n    \"amount\": 7659,\n    \"billed_amount\": 8323,\n    \"provider\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"logo_url\": \"string\",\n      \"support_email\": \"string\",\n      \"support_phone\": \"string\",\n      \"support_url\": \"string\",\n      \"marketplace\": false\n    },\n    \"created_at\": 3661,\n    \"updated_at\": 1868,\n    \"currency\": \"usd\",\n    \"estimated_delivery\": 9581,\n    \"has_issue\": false,\n    \"id\": \"string\",\n    \"status\": \"string\",\n    \"lead_time_hours\": 9115,\n    \"metadata\": {},\n    \"paid\": true,\n    \"parcels\": [\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      },\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      }\n    ],\n    \"payment_reference\": \"string\",\n    \"purchased_rate\": {\n      \"id\": \"string\",\n      \"amount\": 2301,\n      \"billed_amount\": 7844,\n      \"carrier_account\": \"string\",\n      \"pickup_at\": 106,\n      \"provider\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"logo_url\": \"string\",\n        \"support_email\": \"string\",\n        \"support_phone\": \"string\",\n        \"support_url\": \"string\",\n        \"marketplace\": true\n      },\n      \"service_level\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"terms\": \"1 day delivery or Today by 9pm\",\n        \"days\": 8169,\n        \"estimated_delivery\": 8847\n      }\n    },\n    \"rates\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 3602,\n        \"billed_amount\": 5687,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 3481,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5902,\n          \"estimated_delivery\": 7686\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 6148,\n        \"billed_amount\": 1034,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 2067,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5675,\n          \"estimated_delivery\": 5634\n        }\n      }\n    ],\n    \"recipient\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": false,\n        \"latitude\": 2076.6119044878874,\n        \"longitude\": 4420.095774599372\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\"\n    },\n    \"sender\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": true,\n        \"latitude\": 9066.295253092647,\n        \"longitude\": 6673.807409024453\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"logo_url\": \"string\",\n      \"id\": \"string\"\n    },\n    \"pickup_at\": 8454,\n    \"organization_id\": \"string\",\n    \"label_url\": \"string\",\n    \"invoice_id\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_url\": \"string\",\n    \"feedback\": {\n      \"rating\": 0,\n      \"comment\": \"string\",\n      \"updated_at\": 9600\n    },\n    \"tracking_updates\": [\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": false,\n          \"latitude\": 4343.275164352126,\n          \"longitude\": 3689.323409781745\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 7503\n      },\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": true,\n          \"latitude\": 9831.854518981521,\n          \"longitude\": 5596.259228249434\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 4440\n      }\n    ],\n    \"latest_location\": {\n      \"latitude\": 2487.598695095,\n      \"longitude\": 9740.281709304947,\n      \"updated_at\": 7710,\n      \"map_url\": \"string\"\n    }\n  },\n  \"pagination\": {\n    \"limit\": 5641,\n    \"page\": 625,\n    \"has_more\": false\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30d49c4f-692c-43b1-a83d-ae40bc94250a",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": {\n    \"name\": \"Jamie Jones\",\n    \"email\": \"jamie@packagex.io\",\n    \"phone\": \"4844836699\",\n    \"address\": \"500 7th Ave, New York, NY 10018\",\n    \"address_line2\": \"Floor 10\"\n  },\n  \"recipient\": {\n    \"name\": \"Odin Oliver\",\n    \"email\": \"odin.oliver@packagex.io\",\n    \"phone\": \"4844836699\",\n    \"address\": {\n      \"line1\": \"600 B. Street\",\n      \"line2\": \"Suite 300\",\n      \"city\": \"San Diego\",\n      \"state\": \"CA\",\n      \"postal_code\": \"90101\"\n    }\n  },\n  \"parcel\": {\n    \"length\": 2,\n    \"width\": 3.5,\n    \"height\": 4,\n    \"weight\": 1.25,\n    \"item_description\": null,\n    \"special_handling\": null\n  },\n  \"options\": {\n    \"verify_address\": false,\n    \"provider_timeout\": 7500\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7837,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {},\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pagination\": {\n    \"limit\": 4058,\n    \"page\": 6422,\n    \"has_more\": true\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff716cdb-7053-4bd6-b7d9-a6be4a957291",
+          "name": "shipments.retrieve",
+          "request": {
+            "name": "shipments.retrieve",
+            "description": {
+              "content": "Retrieves a specific shipment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shipments",
+                ":shipment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment",
+                  "description": "(Required) The ID of the shipment you want to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1de6e30e-bf95-4ab7-b5eb-01c6c5923aa1",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments",
+                    ":shipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment",
+                      "description": "(Required) The ID of the shipment you want to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {\n    \"amount\": 7659,\n    \"billed_amount\": 8323,\n    \"provider\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"logo_url\": \"string\",\n      \"support_email\": \"string\",\n      \"support_phone\": \"string\",\n      \"support_url\": \"string\",\n      \"marketplace\": false\n    },\n    \"created_at\": 3661,\n    \"updated_at\": 1868,\n    \"currency\": \"usd\",\n    \"estimated_delivery\": 9581,\n    \"has_issue\": false,\n    \"id\": \"string\",\n    \"status\": \"string\",\n    \"lead_time_hours\": 9115,\n    \"metadata\": {},\n    \"paid\": true,\n    \"parcels\": [\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      },\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      }\n    ],\n    \"payment_reference\": \"string\",\n    \"purchased_rate\": {\n      \"id\": \"string\",\n      \"amount\": 2301,\n      \"billed_amount\": 7844,\n      \"carrier_account\": \"string\",\n      \"pickup_at\": 106,\n      \"provider\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"logo_url\": \"string\",\n        \"support_email\": \"string\",\n        \"support_phone\": \"string\",\n        \"support_url\": \"string\",\n        \"marketplace\": true\n      },\n      \"service_level\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"terms\": \"1 day delivery or Today by 9pm\",\n        \"days\": 8169,\n        \"estimated_delivery\": 8847\n      }\n    },\n    \"rates\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 3602,\n        \"billed_amount\": 5687,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 3481,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5902,\n          \"estimated_delivery\": 7686\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 6148,\n        \"billed_amount\": 1034,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 2067,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5675,\n          \"estimated_delivery\": 5634\n        }\n      }\n    ],\n    \"recipient\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": false,\n        \"latitude\": 2076.6119044878874,\n        \"longitude\": 4420.095774599372\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\"\n    },\n    \"sender\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": true,\n        \"latitude\": 9066.295253092647,\n        \"longitude\": 6673.807409024453\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"logo_url\": \"string\",\n      \"id\": \"string\"\n    },\n    \"pickup_at\": 8454,\n    \"organization_id\": \"string\",\n    \"label_url\": \"string\",\n    \"invoice_id\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_url\": \"string\",\n    \"feedback\": {\n      \"rating\": 0,\n      \"comment\": \"string\",\n      \"updated_at\": 9600\n    },\n    \"tracking_updates\": [\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": false,\n          \"latitude\": 4343.275164352126,\n          \"longitude\": 3689.323409781745\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 7503\n      },\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": true,\n          \"latitude\": 9831.854518981521,\n          \"longitude\": 5596.259228249434\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 4440\n      }\n    ],\n    \"latest_location\": {\n      \"latitude\": 2487.598695095,\n      \"longitude\": 9740.281709304947,\n      \"updated_at\": 7710,\n      \"map_url\": \"string\"\n    }\n  },\n  \"pagination\": {\n    \"limit\": 5641,\n    \"page\": 625,\n    \"has_more\": false\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69a4dcc6-3432-473f-8bd1-101e153dcd0c",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments",
+                    ":shipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment",
+                      "description": "(Required) The ID of the shipment you want to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7837,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {},\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pagination\": {\n    \"limit\": 4058,\n    \"page\": 6422,\n    \"has_more\": true\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "941d1b12-2d20-4b41-9e96-e904ece91fff",
+          "name": "shipments.purchase",
+          "request": {
+            "name": "shipments.purchase",
+            "description": {
+              "content": "Purchases a shipping label",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "shipments",
+                ":shipment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment",
+                  "description": "(Required) The ID of the shipment you want to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rate_id\": \"<string>\",\n  \"payment_method\": \"<string>\",\n  \"payment_reference\": \"<string>\",\n  \"label_size\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2db00ab6-ee9f-4420-af0d-a6a7ddc4bdc7",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments",
+                    ":shipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment",
+                      "description": "(Required) The ID of the shipment you want to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rate_id\": \"rate_bdc2f190408545ec8a118886fd5e1dee\",\n  \"payment_reference\": \"Sandbox Department\",\n  \"label_size\": \"4x6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {\n    \"amount\": 7659,\n    \"billed_amount\": 8323,\n    \"provider\": {\n      \"name\": \"string\",\n      \"id\": \"string\",\n      \"logo_url\": \"string\",\n      \"support_email\": \"string\",\n      \"support_phone\": \"string\",\n      \"support_url\": \"string\",\n      \"marketplace\": false\n    },\n    \"created_at\": 3661,\n    \"updated_at\": 1868,\n    \"currency\": \"usd\",\n    \"estimated_delivery\": 9581,\n    \"has_issue\": false,\n    \"id\": \"string\",\n    \"status\": \"string\",\n    \"lead_time_hours\": 9115,\n    \"metadata\": {},\n    \"paid\": true,\n    \"parcels\": [\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      },\n      {\n        \"length\": \"<number>\",\n        \"width\": \"<number>\",\n        \"height\": \"<number>\",\n        \"weight\": \"<number>\",\n        \"type\": \"<string>\",\n        \"item_description\": \"<string>\",\n        \"special_handling\": \"<string>\"\n      }\n    ],\n    \"payment_reference\": \"string\",\n    \"purchased_rate\": {\n      \"id\": \"string\",\n      \"amount\": 2301,\n      \"billed_amount\": 7844,\n      \"carrier_account\": \"string\",\n      \"pickup_at\": 106,\n      \"provider\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"logo_url\": \"string\",\n        \"support_email\": \"string\",\n        \"support_phone\": \"string\",\n        \"support_url\": \"string\",\n        \"marketplace\": true\n      },\n      \"service_level\": {\n        \"name\": \"string\",\n        \"id\": \"string\",\n        \"terms\": \"1 day delivery or Today by 9pm\",\n        \"days\": 8169,\n        \"estimated_delivery\": 8847\n      }\n    },\n    \"rates\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 3602,\n        \"billed_amount\": 5687,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 3481,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5902,\n          \"estimated_delivery\": 7686\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 6148,\n        \"billed_amount\": 1034,\n        \"carrier_account\": \"string\",\n        \"pickup_at\": 2067,\n        \"provider\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"logo_url\": \"string\",\n          \"support_email\": \"string\",\n          \"support_phone\": \"string\",\n          \"support_url\": \"string\",\n          \"marketplace\": false\n        },\n        \"service_level\": {\n          \"name\": \"string\",\n          \"id\": \"string\",\n          \"terms\": \"1 day delivery or Today by 9pm\",\n          \"days\": 5675,\n          \"estimated_delivery\": 5634\n        }\n      }\n    ],\n    \"recipient\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": false,\n        \"latitude\": 2076.6119044878874,\n        \"longitude\": 4420.095774599372\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\"\n    },\n    \"sender\": {\n      \"address\": {\n        \"id\": \"string\",\n        \"hash\": \"string\",\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"state_code\": \"string\",\n        \"country\": \"string\",\n        \"country_code\": \"string\",\n        \"postal_code\": \"string\",\n        \"formatted_address\": \"string\",\n        \"textarea\": \"string\",\n        \"timezone\": \"America/Los_Angeles\",\n        \"verified\": true,\n        \"latitude\": 9066.295253092647,\n        \"longitude\": 6673.807409024453\n      },\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"logo_url\": \"string\",\n      \"id\": \"string\"\n    },\n    \"pickup_at\": 8454,\n    \"organization_id\": \"string\",\n    \"label_url\": \"string\",\n    \"invoice_id\": \"string\",\n    \"tracking_number\": \"string\",\n    \"tracking_url\": \"string\",\n    \"feedback\": {\n      \"rating\": 0,\n      \"comment\": \"string\",\n      \"updated_at\": 9600\n    },\n    \"tracking_updates\": [\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": false,\n          \"latitude\": 4343.275164352126,\n          \"longitude\": 3689.323409781745\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 7503\n      },\n      {\n        \"address\": {\n          \"id\": \"string\",\n          \"hash\": \"string\",\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"state_code\": \"string\",\n          \"country\": \"string\",\n          \"country_code\": \"string\",\n          \"postal_code\": \"string\",\n          \"formatted_address\": \"string\",\n          \"textarea\": \"string\",\n          \"timezone\": \"America/Los_Angeles\",\n          \"verified\": true,\n          \"latitude\": 9831.854518981521,\n          \"longitude\": 5596.259228249434\n        },\n        \"status\": \"string\",\n        \"comment\": \"string\",\n        \"images\": [\n          \"string\",\n          \"string\"\n        ],\n        \"message\": \"Your package is in transit\",\n        \"event\": \"Your package is in transit\",\n        \"created_at\": 4440\n      }\n    ],\n    \"latest_location\": {\n      \"latitude\": 2487.598695095,\n      \"longitude\": 9740.281709304947,\n      \"updated_at\": 7710,\n      \"map_url\": \"string\"\n    }\n  },\n  \"pagination\": {\n    \"limit\": 5641,\n    \"page\": 625,\n    \"has_more\": false\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93bae6f0-13ef-419e-92f8-7c96dfde6272",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "shipments",
+                    ":shipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment",
+                      "description": "(Required) The ID of the shipment you want to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "PX-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rate_id\": \"rate_bdc2f190408545ec8a118886fd5e1dee\",\n  \"payment_reference\": \"Sandbox Department\",\n  \"label_size\": \"4x6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7837,\n  \"message\": \"string\",\n  \"error_code\": \"string\",\n  \"data\": {},\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"pagination\": {\n    \"limit\": 4058,\n    \"page\": 6422,\n    \"has_more\": true\n  },\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"endpoint\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sandbox--api.packagex.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "PX-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fa61a1ad-9ff5-4e3f-8c92-e8637253982a",
+    "name": "API Title shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -5,10 +5,9 @@ source: openapi/packagex-openapi-original.yml
 server:
   name: packagex
   transport: http
-description: >-
-  No official hosted/remote PackageX MCP server was found. The tools below are a
-  candidate surface derived one-to-one from the published Shipments OpenAPI
-  operations, for use if an MCP server is stood up.
+description: No official hosted/remote PackageX MCP server was found. The tools below are a candidate
+  surface derived one-to-one from the published Shipments OpenAPI operations, for use if an MCP server
+  is stood up.
 tools:
 - name: list_shipments
   description: List shipments.
@@ -22,3 +21,9 @@ tools:
 - name: purchase_shipment
   description: Purchase / update a shipment (POST to the singular endpoint).
   source_operation: openapi/packagex-openapi-original.yml#shipments.purchase
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census
