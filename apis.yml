@@ -39,6 +39,15 @@ tags:
 - Logistics
 - Shipping
 - Supply Chain
+- Computer-Vision
+- OCR
+- Package Tracking
+- Fulfillment
+tags_raw:
+- Company
+- Logistics
+- Shipping
+- Supply Chain
 - Computer Vision
 - OCR
 - Package Tracking
@@ -50,6 +59,8 @@ apis:
   humanURL: https://docs.packagex.io/apis/getting-started/welcome
   baseURL: https://api.packagex.io
   tags:
+  - Shipments
+  tags_raw:
   - shipments
   properties:
   - type: OpenAPI
