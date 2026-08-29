@@ -10,6 +10,18 @@ description: >-
   Authentication is API-key based via the PX-API-KEY header, with separate
   sandbox and production environments. Customers include WeWork, Subaru, Ricoh,
   Medtronic, Toyota and On Running.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
