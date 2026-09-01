@@ -71,7 +71,7 @@ apis:
   humanURL: https://docs.packagex.io/apis/getting-started/welcome
   baseURL: https://api.packagex.io
   tags:
-  - shipments
+  - Shipments
   tags_raw:
   - shipments
   properties:
