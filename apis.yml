@@ -53,7 +53,7 @@ tags:
 - Logistics
 - Shipping
 - Supply Chain
-- Computer-Vision
+- Computer Vision
 - OCR
 - Package Tracking
 - Fulfillment
@@ -66,9 +66,10 @@ tags_raw:
 - OCR
 - Package Tracking
 - Fulfillment
+- Computer-Vision
 apis:
 - aid: packagex:packagex-shipments-api
-  name: PackageX shipments API
+  name: PackageX Shipments API
   description: The shipments API from PackageX — 2 operation(s) for shipments.
   humanURL: https://docs.packagex.io/apis/getting-started/welcome
   baseURL: https://api.packagex.io
