@@ -283,59 +283,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    address:
+    pagination:
       type: object
-      description: The PackageX address object
+      description: The pagination object returned in responses where multiple values are returned
       properties:
-        id:
-          description: The ID for this address. Can be passed into any address field in the future to retrieve this exact address.
-          type: string
-        hash:
-          description: Similar to the address ID, the hash is a unique string that identifies the address but without the line2 property.
-          type: string
-        line1:
-          description: The first line of the street address.
-          type: string
-        line2:
-          description: The second line of the street address.
-          type: string
-        city:
-          description: The name of the city.
-          type: string
-        state:
-          description: The full name of the state.
-          type: string
-        state_code:
-          description: The abbreviated code for the state if applicable.
-          type: string
-        country:
-          description: The full name of the country for this address.
-          type: string
-        country_code:
-          description: The two character country code for this address.
-          type: string
-        postal_code:
-          description: The postal code for this address.
-          type: string
-        formatted_address:
-          description: The full text string of the address.
-          type: string
-        textarea:
-          description: The full text string of the address without the line2 address. This is useful if using address auto complete that does not provide a line2 address which would be asked for in a separate input field.
-          type: string
-        timezone:
-          description: The timezone for this address
-          example: America/Los_Angeles
-          type: string
-        verified:
-          description: If we have verified this address
+        limit:
+          type: integer
+          description: The limit for the responses
+        page:
+          type: integer
+          description: The current page offset that is being retrieved
+          example: If the limit is 10 and the page is 3, results are being returned for items 30 to 40
+        has_more:
           type: boolean
-        latitude:
-          description: The latitude coordinate
-          type: number
-        longitude:
-          description: The longitude coordinate
-          type: number
+          description: indicates if there are more values in the database not retrieved in this query
     rate:
       type: object
       description: The shipping rate object showing the service level, price, and shipping provider information
@@ -381,50 +342,6 @@ components:
             estimated_delivery:
               description: The time in epoch seconds when we estimate the shipment at this rate will be delivered
               type: integer
-    tracking_update:
-      type: object
-      description: The record of each tracking update from a shipment
-      properties:
-        address:
-          $ref: '#/components/schemas/address'
-        status:
-          description: The status for this shipment. For all statuses see https://docs.packagex.io/shipments/statuses
-          type: string
-        comment:
-          description: A shipping provider comment
-          type:
-          - string
-          - 'null'
-        images:
-          description: Urls of images
-          type: array
-          items:
-            type: string
-        message:
-          description: Human readable text explaining the status
-          example: Your package is in transit
-          type: string
-        event:
-          description: The event that occurred when this event was created. For all events see https://docs.packagex.io/shipments/events
-          example: Your package is in transit
-          type: string
-        created_at:
-          description: Time from unix eopch seconds when this tracking update was created
-          type: integer
-    pagination:
-      type: object
-      description: The pagination object returned in responses where multiple values are returned
-      properties:
-        limit:
-          type: integer
-          description: The limit for the responses
-        page:
-          type: integer
-          description: The current page offset that is being retrieved
-          example: If the limit is 10 and the page is 3, results are being returned for items 30 to 40
-        has_more:
-          type: boolean
-          description: indicates if there are more values in the database not retrieved in this query
     shipment:
       type: object
       description: A shipment object
@@ -599,6 +516,119 @@ components:
               type:
               - string
               - 'null'
+    provider:
+      type: object
+      description: Details about a shipping provider for a given rate or shipment
+      properties:
+        name:
+          description: The name of the provider
+          type: string
+        id:
+          description: Unique ID of the provider
+          type: string
+        logo_url:
+          description: The url for the provider's logo
+          type: string
+        support_email:
+          description: The contact email provided by the shipping provider
+          type:
+          - string
+          - 'null'
+        support_phone:
+          description: The contact phone provided by the shipping provider
+          type:
+          - string
+          - 'null'
+        support_url:
+          description: The contact website provided by the shipping provider
+          type:
+          - string
+          - 'null'
+        marketplace:
+          description: If this shipping provider came from the PackageX marketplace. Typically large providers like FedEx, UPS, USPS, etc are not from the marketplace and same-day courier are not.
+          type: boolean
+    parcel:
+      type: object
+      description: A parcel or package that will be included in a shipment
+      properties:
+        length:
+          description: The length of the package in inches
+          type: number
+        width:
+          description: The width of the package in inches
+          type: number
+        height:
+          description: The height of the package in inches
+          type: number
+        weight:
+          description: The weight of the package in pounds
+          type: number
+        type:
+          description: The courier specific packaging. See https://docs.packagex.io/shipments/predefined-packages for more information
+          type: string
+        item_description:
+          description: The user provided description for the package. This is shown the the recipient if using PackageX notifications
+          type:
+          - string
+          - 'null'
+        special_handling:
+          description: Any special handing instructions provided. Not all shipping providers support these
+          type:
+          - string
+          - 'null'
+    address:
+      type: object
+      description: The PackageX address object
+      properties:
+        id:
+          description: The ID for this address. Can be passed into any address field in the future to retrieve this exact address.
+          type: string
+        hash:
+          description: Similar to the address ID, the hash is a unique string that identifies the address but without the line2 property.
+          type: string
+        line1:
+          description: The first line of the street address.
+          type: string
+        line2:
+          description: The second line of the street address.
+          type: string
+        city:
+          description: The name of the city.
+          type: string
+        state:
+          description: The full name of the state.
+          type: string
+        state_code:
+          description: The abbreviated code for the state if applicable.
+          type: string
+        country:
+          description: The full name of the country for this address.
+          type: string
+        country_code:
+          description: The two character country code for this address.
+          type: string
+        postal_code:
+          description: The postal code for this address.
+          type: string
+        formatted_address:
+          description: The full text string of the address.
+          type: string
+        textarea:
+          description: The full text string of the address without the line2 address. This is useful if using address auto complete that does not provide a line2 address which would be asked for in a separate input field.
+          type: string
+        timezone:
+          description: The timezone for this address
+          example: America/Los_Angeles
+          type: string
+        verified:
+          description: If we have verified this address
+          type: boolean
+        latitude:
+          description: The latitude coordinate
+          type: number
+        longitude:
+          description: The longitude coordinate
+          type: number
     error:
       description: An error response
       type: object
@@ -633,6 +663,36 @@ components:
         endpoint:
           description: The endpoint that was hit
           type: string
+    tracking_update:
+      type: object
+      description: The record of each tracking update from a shipment
+      properties:
+        address:
+          $ref: '#/components/schemas/address'
+        status:
+          description: The status for this shipment. For all statuses see https://docs.packagex.io/shipments/statuses
+          type: string
+        comment:
+          description: A shipping provider comment
+          type:
+          - string
+          - 'null'
+        images:
+          description: Urls of images
+          type: array
+          items:
+            type: string
+        message:
+          description: Human readable text explaining the status
+          example: Your package is in transit
+          type: string
+        event:
+          description: The event that occurred when this event was created. For all events see https://docs.packagex.io/shipments/events
+          example: Your package is in transit
+          type: string
+        created_at:
+          description: Time from unix eopch seconds when this tracking update was created
+          type: integer
     response:
       description: An error response
       type: object
@@ -669,66 +729,6 @@ components:
         endpoint:
           description: The endpoint that was hit
           type: string
-    parcel:
-      type: object
-      description: A parcel or package that will be included in a shipment
-      properties:
-        length:
-          description: The length of the package in inches
-          type: number
-        width:
-          description: The width of the package in inches
-          type: number
-        height:
-          description: The height of the package in inches
-          type: number
-        weight:
-          description: The weight of the package in pounds
-          type: number
-        type:
-          description: The courier specific packaging. See https://docs.packagex.io/shipments/predefined-packages for more information
-          type: string
-        item_description:
-          description: The user provided description for the package. This is shown the the recipient if using PackageX notifications
-          type:
-          - string
-          - 'null'
-        special_handling:
-          description: Any special handing instructions provided. Not all shipping providers support these
-          type:
-          - string
-          - 'null'
-    provider:
-      type: object
-      description: Details about a shipping provider for a given rate or shipment
-      properties:
-        name:
-          description: The name of the provider
-          type: string
-        id:
-          description: Unique ID of the provider
-          type: string
-        logo_url:
-          description: The url for the provider's logo
-          type: string
-        support_email:
-          description: The contact email provided by the shipping provider
-          type:
-          - string
-          - 'null'
-        support_phone:
-          description: The contact phone provided by the shipping provider
-          type:
-          - string
-          - 'null'
-        support_url:
-          description: The contact website provided by the shipping provider
-          type:
-          - string
-          - 'null'
-        marketplace:
-          description: If this shipping provider came from the PackageX marketplace. Typically large providers like FedEx, UPS, USPS, etc are not from the marketplace and same-day courier are not.
-          type: boolean
   securitySchemes:
     api_key:
       type: apiKey
