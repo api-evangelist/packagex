@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/packagex-io/openapi/HEAD/openapi/spec3.yml",
+ "requested_url": "https://raw.githubusercontent.com/packagex-io/openapi/HEAD/openapi/spec3.yml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 27248,
+ "sha256": "23b4af1a9d0a7884c42c2c7b570e2776cee3ffa6caff7bfe82d03b2975de3427",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
