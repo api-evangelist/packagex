@@ -734,3 +734,9 @@ components:
       type: apiKey
       in: header
       name: PX-API-KEY
+x-provenance:
+  method: harvested
+  publisher: PackageX
+  source: https://raw.githubusercontent.com/packagex-io/openapi/HEAD/openapi/spec3.yml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
